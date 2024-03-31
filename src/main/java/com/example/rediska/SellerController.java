@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/rediska")
 @RequiredArgsConstructor
-public class SellerController {
+public class SellerController{
 
     private final SellerService sellerService;
 
@@ -26,5 +26,10 @@ public class SellerController {
     @GetMapping
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(sellerService.findAll(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable int id){
+        return new ResponseEntity(sellerService.deleteById(id), HttpStatus.NO_CONTENT);
     }
 }
